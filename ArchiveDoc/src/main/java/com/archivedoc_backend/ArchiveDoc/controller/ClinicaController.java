@@ -1,7 +1,7 @@
 package com.archivedoc_backend.ArchiveDoc.controller;
 
 import com.archivedoc_backend.ArchiveDoc.dto.ClinicaRequestDTO;
-import com.archivedoc.ArchiveDoc.model.Clinica;
+import com.archivedoc_backend.ArchiveDoc.model.Clinica;
 import com.archivedoc_backend.ArchiveDoc.repository.ClinicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

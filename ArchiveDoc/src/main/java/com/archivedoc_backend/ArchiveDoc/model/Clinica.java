@@ -11,6 +11,8 @@ public class Clinica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idClinica;
 
+    private String nome;
+
     private String email;
 
     private String senha;
@@ -21,6 +23,14 @@ public class Clinica {
 
     public void setIdClinica(int idClinica) {
         this.idClinica = idClinica;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -44,11 +54,11 @@ public class Clinica {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Clinica clinica = (Clinica) o;
-        return idClinica == clinica.idClinica && Objects.equals(email, clinica.email) && Objects.equals(senha, clinica.senha);
+        return idClinica == clinica.idClinica && Objects.equals(nome, clinica.nome) && Objects.equals(email, clinica.email) && Objects.equals(senha, clinica.senha);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idClinica, email, senha);
+        return Objects.hash(idClinica, nome, email, senha);
     }
 }

@@ -1,5 +1,6 @@
 create table Clinica (
 	idClinica int primary key not null auto_increment,
+	nome varchar(150),
 	email varchar(150),
 	senha varchar(8)
 );

@@ -1,4 +1,4 @@
-package com.archivedoc.ArchiveDoc.model;
+package com.archivedoc_backend.ArchiveDoc.model;
 
 import jakarta.persistence.*;
 

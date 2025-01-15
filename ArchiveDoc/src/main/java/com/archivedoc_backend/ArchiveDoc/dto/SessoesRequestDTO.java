@@ -4,5 +4,5 @@ import com.archivedoc_backend.ArchiveDoc.model.Guias;
 
 import java.util.Date;
 
-public record SessoesRequestDTO(Guias guias, Date dataSessao) {
+public record SessoesRequestDTO(Integer guiaId, Date dataSessao) {
 }

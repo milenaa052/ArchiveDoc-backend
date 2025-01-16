@@ -25,7 +25,6 @@ public class Paciente {
     private String convenio;
 
     @OneToMany(mappedBy = "paciente")
-    @JsonIgnore
     private List<Guias> guias;
 
     public int getIdPaciente() {

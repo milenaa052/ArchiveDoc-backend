@@ -59,14 +59,22 @@ public class PacienteController {
                 .orElseThrow(() ->
                         new IllegalArgumentException("Paciente não encontrado."));
 
-        Psicologo psicologo = this.psicologoRepository.findById(dto.psicologoId())
-                .orElseThrow(() ->
-                        new IllegalArgumentException("Psicólogo não encontrado."));
-
-        if(dto != null) {
+        if(dto.nome() != null) {
             paciente.setNome(dto.nome());
+        }
+
+        if(dto.cpf() != null) {
             paciente.setCpf(dto.cpf());
+        }
+
+        if(dto.psicologoId() != null) {
+            Psicologo psicologo = this.psicologoRepository.findById(dto.psicologoId())
+                    .orElseThrow(() ->
+                            new IllegalArgumentException("Psicólogo não encontrado."));
             paciente.setPsicologo(psicologo);
+        }
+
+        if(dto.convenio() != null) {
             paciente.setConvenio(dto.convenio());
         }
 

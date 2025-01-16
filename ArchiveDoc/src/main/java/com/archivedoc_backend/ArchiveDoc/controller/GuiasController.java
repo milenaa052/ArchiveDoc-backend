@@ -17,6 +17,7 @@ public class GuiasController {
     @Autowired
     private GuiasRepository guiasRepository;
 
+    @Autowired
     private PacienteRepository pacienteRepository;
 
     @GetMapping
@@ -62,18 +63,38 @@ public class GuiasController {
                 .orElseThrow(() ->
                         new IllegalArgumentException("Guia não encontrada"));
 
-        Paciente paciente = this.pacienteRepository.findById(dto.pacienteId())
-                .orElseThrow(() ->
-                        new IllegalArgumentException("Paciente não encontrado."));
-
-        if(dto != null) {
+        if(dto.numeroGuia() != null) {
             guias.setNumeroGuia(dto.numeroGuia());
+        }
+
+        if(dto.dataPedido() != null) {
             guias.setDataPedido(dto.dataPedido());
+        }
+
+        if(dto.dataLiberacao() != null) {
             guias.setDataLiberacao(dto.dataLiberacao());
+        }
+
+        if(dto.tipoSessao() != null) {
             guias.setTipoSessao(dto.tipoSessao());
+        }
+
+        if(dto.quantidadeSessoes() != null) {
             guias.setQuantidadeSessoes(dto.quantidadeSessoes());
+        }
+
+        if(dto.status() != null) {
             guias.setStatus(dto.status());
+        }
+
+        if(dto.dataPrimeiraSessao() != null) {
             guias.setDataPrimeiraSessao(dto.dataPrimeiraSessao());
+        }
+
+        if(dto.pacienteId() != null) {
+            Paciente paciente = this.pacienteRepository.findById(dto.pacienteId())
+                    .orElseThrow(() ->
+                            new IllegalArgumentException("Paciente não encontrado."));
             guias.setPaciente(paciente);
         }
 

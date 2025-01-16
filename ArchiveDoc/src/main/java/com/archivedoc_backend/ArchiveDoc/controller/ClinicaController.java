@@ -49,9 +49,15 @@ public class ClinicaController {
         Clinica clinica = this.clinicaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Clinica não encontrada."));
 
-        if (dto != null) {
+        if (dto.nome() != null) {
             clinica.setNome(dto.nome());
+        }
+
+        if (dto.email() != null) {
             clinica.setEmail(dto.email());
+        }
+
+        if (dto.senha() != null) {
             clinica.setSenha(dto.senha());
         }
 

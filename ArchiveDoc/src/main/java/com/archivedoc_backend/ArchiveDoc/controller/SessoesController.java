@@ -57,12 +57,14 @@ public class SessoesController {
                 .orElseThrow(() ->
                         new IllegalArgumentException("Sessão não encontrada."));
 
-        Guias guia = this.guiasRepository.findById(dto.guiaId())
-                .orElseThrow(() ->
-                        new IllegalArgumentException("Guia não encontrada."));
-
-        if(dto != null) {
+        if(dto.guiaId() != null) {
+            Guias guia = this.guiasRepository.findById(dto.guiaId())
+                    .orElseThrow(() ->
+                            new IllegalArgumentException("Guia não encontrada."));
             sessoes.setGuiaId(guia);
+        }
+
+        if(dto.dataSessao() != null) {
             sessoes.setDataSessao(dto.dataSessao());
         }
 

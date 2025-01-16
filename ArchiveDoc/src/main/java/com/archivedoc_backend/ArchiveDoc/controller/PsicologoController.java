@@ -48,8 +48,11 @@ public class PsicologoController {
                 .orElseThrow(() ->
                         new IllegalArgumentException("Psicólogo não encontrado."));
 
-        if(dto != null) {
+        if(dto.nome() != null) {
             psicologo.setNome(dto.nome());
+        }
+
+        if(dto.crp() != null) {
             psicologo.setCrp(dto.crp());
         }
 

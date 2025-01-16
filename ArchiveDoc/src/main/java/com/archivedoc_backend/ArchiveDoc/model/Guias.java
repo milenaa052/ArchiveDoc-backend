@@ -29,7 +29,6 @@ public class Guias {
     private Date dataPrimeiraSessao;
 
     @OneToMany(mappedBy = "guiaId")
-    @JsonIgnore
     private List<Sessoes> sessoes;
 
     @ManyToOne

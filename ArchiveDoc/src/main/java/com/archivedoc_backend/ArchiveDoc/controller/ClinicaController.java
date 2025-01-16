@@ -31,7 +31,7 @@ public class ClinicaController {
 
     @PostMapping
     public ResponseEntity<Clinica> save(@RequestBody ClinicaRequestDTO dto) {
-        if(dto.nome().isEmpty() || dto.email().isEmpty() || dto.senha().isEmpty()) {
+        if(dto == null) {
             return ResponseEntity.status(428).build();
         }
 
@@ -48,15 +48,16 @@ public class ClinicaController {
     public ResponseEntity<Clinica> partialUpdate(@PathVariable Integer id, @RequestBody ClinicaRequestDTO dto) {
         Clinica clinica = this.clinicaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Clinica não encontrada."));
-        if (dto.nome() != null && !dto.nome().isEmpty()) {
+
+        if (dto.nome() != null) {
             clinica.setNome(dto.nome());
         }
 
-        if (dto.email() != null && !dto.email().isEmpty()) {
+        if (dto.email() != null) {
             clinica.setEmail(dto.email());
         }
 
-        if (dto.senha() != null && !dto.senha().isEmpty()) {
+        if (dto.senha() != null) {
             clinica.setSenha(dto.senha());
         }
 
@@ -66,7 +67,7 @@ public class ClinicaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Clinica> update(@PathVariable Integer id, @RequestBody ClinicaRequestDTO dto) {
-        if (dto.email().isEmpty() || dto.senha().isEmpty()) {
+        if (dto == null) {
             return ResponseEntity.status(428).build();
         }
 

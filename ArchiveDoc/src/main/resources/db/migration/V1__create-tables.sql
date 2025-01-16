@@ -24,7 +24,7 @@ create table Guias (
 	idGuia int primary key not null auto_increment,
 	NumeroGuia int not null,
 	DataPedido Date not null,
-	DataLiberacao Date not null,
+	DataLiberacao Date,
 	TipoSessao varchar(50) not null,
 	QuantidadeSessoes int not null,
 	Status Boolean,

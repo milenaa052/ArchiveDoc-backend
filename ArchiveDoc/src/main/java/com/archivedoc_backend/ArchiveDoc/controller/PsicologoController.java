@@ -29,19 +29,6 @@ public class PsicologoController {
                         new IllegalArgumentException("Psicólogo não encontrado."));
     }
 
-    @GetMapping("/paciente/{idPaciente}")
-    public ResponseEntity<List<Psicologo>> findByPaciente(@PathVariable Integer idPaciente){
-        List<Psicologo> psicologos = psicologoRepository.findAll().stream()
-                .filter(psicologo -> psicologo.getPacientes() != null && psicologo.getPacientes().getFirst().getIdPaciente() == idPaciente)
-                .toList();
-
-        if(psicologos.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(psicologos);
-    }
-
     @PostMapping
     public ResponseEntity<Psicologo> save(@RequestBody PsicologoRequestDTO dto) {
         if(dto == null) {

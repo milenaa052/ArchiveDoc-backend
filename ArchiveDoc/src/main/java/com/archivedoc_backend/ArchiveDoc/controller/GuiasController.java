@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/guias")
@@ -27,11 +29,18 @@ public class GuiasController {
     }
 
     @GetMapping("/{id}")
-    public Guias findById(@PathVariable Integer id) {
-        return this.guiasRepository.findById(id)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("Guia não encontrada."));
+    public ResponseEntity<Map<String, Object>> findById(@PathVariable Integer id) {
+        Guias guia = this.guiasRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Guia não encontrada."));
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("guia", guia);
+        response.put("paciente", guia.getPaciente());
+        response.put("psicologo", guia.getPaciente().getPsicologo());
+
+        return ResponseEntity.ok(response);
     }
+
 
     @GetMapping("/paciente/{idPaciente}")
     public ResponseEntity<List<Guias>> findByPaciente(@PathVariable Integer idPaciente){

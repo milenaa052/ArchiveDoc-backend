@@ -1,6 +1,8 @@
 package com.archivedoc_backend.ArchiveDoc.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,12 +21,13 @@ public class Paciente {
 
     @ManyToOne
     @JoinColumn(name = "psicologoId", referencedColumnName = "idPsicologo")
-    @JsonIgnore
+    @JsonManagedReference
     private Psicologo psicologo;
 
     private String convenio;
 
     @OneToMany(mappedBy = "paciente")
+    @JsonBackReference
     private List<Guias> guias;
 
     public int getIdPaciente() {

@@ -1,5 +1,6 @@
 package com.archivedoc_backend.ArchiveDoc.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class Psicologo {
     private String crp;
 
     @OneToMany(mappedBy = "psicologo")
+    @JsonBackReference
     private List<Paciente> pacientes;
 
     public int getIdPsicologo() {

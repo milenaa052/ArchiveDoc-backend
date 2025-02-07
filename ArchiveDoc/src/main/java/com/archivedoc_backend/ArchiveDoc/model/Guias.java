@@ -1,6 +1,7 @@
 package com.archivedoc_backend.ArchiveDoc.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -33,7 +34,7 @@ public class Guias {
 
     @ManyToOne
     @JoinColumn(name = "pacienteId", referencedColumnName = "idPaciente")
-    @JsonIgnore
+    @JsonManagedReference
     private Paciente paciente;
 
     public int getIdGuia() {

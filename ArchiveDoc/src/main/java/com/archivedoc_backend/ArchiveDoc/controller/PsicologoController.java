@@ -1,6 +1,7 @@
 package com.archivedoc_backend.ArchiveDoc.controller;
 
 import com.archivedoc_backend.ArchiveDoc.dto.PsicologoRequestDTO;
+import com.archivedoc_backend.ArchiveDoc.model.Paciente;
 import com.archivedoc_backend.ArchiveDoc.model.Psicologo;
 import com.archivedoc_backend.ArchiveDoc.repository.PsicologoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,19 @@ public class PsicologoController {
         return this.psicologoRepository.findById(id)
                 .orElseThrow(() ->
                         new IllegalArgumentException("Psicólogo não encontrado."));
+    }
+
+    @GetMapping("/paciente/{idPaciente}")
+    public ResponseEntity<List<Psicologo>> findByPaciente(@PathVariable Integer idPaciente){
+        List<Psicologo> psicologos = psicologoRepository.findAll().stream()
+                .filter(psicologo -> psicologo.getPacientes() != null && psicologo.getPacientes().getFirst().getIdPaciente() == idPaciente)
+                .toList();
+
+        if(psicologos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(psicologos);
     }
 
     @PostMapping

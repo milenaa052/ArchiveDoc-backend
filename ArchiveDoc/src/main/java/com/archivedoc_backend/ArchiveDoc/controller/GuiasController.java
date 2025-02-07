@@ -33,6 +33,19 @@ public class GuiasController {
                         new IllegalArgumentException("Guia não encontrada."));
     }
 
+    @GetMapping("/paciente/{idPaciente}")
+    public ResponseEntity<List<Guias>> findByPaciente(@PathVariable Integer idPaciente){
+        List<Guias> guias = guiasRepository.findAll().stream()
+                .filter(guia -> guia.getPaciente() != null && guia.getPaciente().getIdPaciente() == idPaciente)
+                .toList();
+
+        if(guias.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(guias);
+    }
+
     @PostMapping
     public ResponseEntity<Guias> save(@RequestBody GuiasRequestDTO dto) {
         if(dto == null) {
